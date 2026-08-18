@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=240, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#ff4f00">
+    <title>R1 Soundboard</title>
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css?v=1">
+  </head>
+  <body>
+    <main id="app">
+      <header>
+        <strong>SOUNDBOARD</strong>
+        <span id="status">Kies een vak</span>
+      </header>
+
+      <section id="slots" class="slots" aria-label="Geluidsvakken"></section>
+
+      <footer>
+        <button id="record" class="record" aria-label="Opname starten of stoppen"><span></span><small>REC</small></button>
+        <button id="rename" aria-label="Naam wijzigen">✎<small>naam</small></button>
+        <button id="export" aria-label="Geluid exporteren">⇧<small>export</small></button>
+        <button id="remove" aria-label="Geluid verwijderen">×<small>wis</small></button>
+      </footer>
+
+      <div id="recording-overlay" class="recording-overlay" hidden>
+        <span class="pulse"></span>
+        <strong>OPNAME</strong>
+        <span id="timer">0.0 s</span>
+        <small>Laat zijknop los of tik REC</small>
+      </div>
+
+      <div id="toast" class="toast" role="status"></div>
+
+      <dialog id="rename-dialog">
+        <form method="dialog">
+          <label for="sound-name">Naam</label>
+          <input id="sound-name" maxlength="18" autocomplete="off">
+          <div>
+            <button value="cancel">Annuleer</button>
+            <button id="save-name" value="default">Bewaar</button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog id="delete-dialog">
+        <form method="dialog">
+          <p>Geluid wissen?</p>
+          <div>
+            <button value="cancel">Annuleer</button>
+            <button id="confirm-delete" class="danger" value="default">Wis</button>
+          </div>
+        </form>
+      </dialog>
+    </main>
+    <script type="module" src="src/app.js?v=1"></script>
+  </body>
+</html>

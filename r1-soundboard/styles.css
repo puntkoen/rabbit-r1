@@ -1,0 +1,56 @@
+:root {
+  color-scheme: dark;
+  --orange: #ff4f00;
+  --yellow: #ffd43b;
+  --ink: #111;
+  --panel: #242424;
+  --muted: #aaa;
+}
+
+* { box-sizing: border-box; }
+html, body { width: 100%; min-width: 240px; height: 100%; min-height: 282px; margin: 0; overflow: hidden; background: #090909; color: white; font: 12px/1.15 system-ui, sans-serif; }
+button, input { font: inherit; }
+#app { position: absolute; inset: 0; display: grid; grid-template-rows: 34px 1fr 54px; background: var(--ink); }
+
+header { display: flex; align-items: center; justify-content: space-between; padding: 0 8px; border-bottom: 1px solid #333; }
+header strong { color: var(--orange); font-size: 10px; letter-spacing: .14em; }
+#status { max-width: 128px; overflow: hidden; color: var(--muted); font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+
+.slots { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); gap: 4px; padding: 5px; min-height: 0; }
+.slot { position: relative; min-height: 0; overflow: hidden; border: 2px solid #333; border-radius: 7px; padding: 4px 6px; color: #ddd; background: var(--panel); text-align: left; }
+.slot.selected { border-color: var(--orange); background: #332016; }
+.slot.playing { border-color: var(--yellow); }
+.slot.empty { color: #777; background: #191919; }
+.slot b { display: block; overflow: hidden; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.slot small { position: absolute; right: 5px; bottom: 3px; color: var(--muted); font-size: 8px; }
+.slot .dot { position: absolute; left: 6px; bottom: 5px; width: 5px; height: 5px; border-radius: 50%; background: var(--orange); }
+
+footer { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 4px 5px 5px; border-top: 1px solid #333; }
+footer button { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; border: 1px solid #444; border-radius: 7px; color: white; background: #222; font-size: 20px; }
+footer button small { color: var(--muted); font-size: 8px; }
+footer .record { color: var(--orange); }
+.record span { width: 14px; height: 14px; border-radius: 50%; background: currentColor; }
+.record.active span { border-radius: 2px; }
+
+.recording-overlay { position: absolute; z-index: 5; inset: 34px 0 54px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: #100e; }
+.recording-overlay[hidden] { display: none; }
+.recording-overlay strong { color: var(--orange); letter-spacing: .18em; }
+.recording-overlay small { color: var(--muted); }
+.pulse { width: 38px; height: 38px; border-radius: 50%; background: var(--orange); animation: pulse .8s infinite alternate; }
+@keyframes pulse { to { transform: scale(.75); opacity: .55; } }
+
+.toast { position: absolute; z-index: 8; left: 10px; right: 10px; bottom: 60px; padding: 8px; border-radius: 7px; background: #000e; text-align: center; opacity: 0; pointer-events: none; transition: opacity .15s; }
+.toast.show { opacity: 1; }
+
+dialog { width: 214px; border: 0; border-radius: 10px; padding: 14px; color: white; background: #282828; }
+dialog::backdrop { background: #000b; }
+dialog form { display: grid; gap: 10px; }
+dialog input { width: 100%; border: 1px solid #555; border-radius: 6px; padding: 8px; color: white; background: #151515; }
+dialog p { margin: 0; text-align: center; }
+dialog form div { display: flex; justify-content: flex-end; gap: 6px; }
+dialog button { min-height: 34px; border: 0; border-radius: 6px; padding: 0 10px; color: white; background: #555; }
+dialog .danger { background: #9e2d22; }
+
+@media (min-width: 300px) {
+  #app { width: 240px; height: 282px; top: 50%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 10px 50px #0009; }
+}
